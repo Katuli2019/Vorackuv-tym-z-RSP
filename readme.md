@@ -1,0 +1,1 @@
+Vorackuv tym z RSP
