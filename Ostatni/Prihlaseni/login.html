@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="cs">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Gastro ƒåasopis Jihlava ‚Äì P≈ôihl√°≈°en√≠</title>
+    <style>
+      :root {
+        --green: #1f4a3b;
+        --green-dark: #16382d;
+        --beige: #c89a5a;
+        --bg: #faf8f2;
+        --radius: 16px;
+        --shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+        --focus: 0 0 0 3px rgba(200, 154, 90, 0.3);
+      }
+
+      html,
+      body {
+        height: 100%;
+        margin: 0;
+      }
+      body {
+        background: var(--bg);
+        font-family: "Poppins", system-ui, sans-serif;
+        display: grid;
+        place-items: center;
+        color: var(--green);
+      }
+
+      .ring {
+        position: fixed;
+        inset: 0;
+        pointer-events: none;
+        z-index: -1;
+        background: radial-gradient(
+            46rem 46rem at 50% 12%,
+            rgba(31, 74, 59, 0.06),
+            transparent 60%
+          ),
+          radial-gradient(
+            24rem 24rem at 12% 82%,
+            rgba(200, 154, 90, 0.1),
+            transparent 60%
+          ),
+          radial-gradient(
+            20rem 20rem at 88% 70%,
+            rgba(31, 74, 59, 0.09),
+            transparent 60%
+          );
+      }
+
+      .wrap {
+        width: min(96vw, 980px);
+        display: grid;
+        grid-template-columns: 1.1fr 1fr;
+        gap: 40px;
+        align-items: center;
+      }
+
+      @media (max-width: 900px) {
+        .wrap {
+          grid-template-columns: 1fr;
+          gap: 28px;
+          padding: 24px;
+        }
+      }
+
+      .card {
+        background: white;
+        border-radius: var(--radius);
+        box-shadow: var(--shadow);
+        padding: 28px;
+        border: 1px solid rgba(31, 74, 59, 0.1);
+      }
+
+      .brand {
+        display: flex;
+        align-items: center;
+        gap: 16px;
+        margin-bottom: 18px;
+      }
+
+      .brand img {
+        width: 72px;
+        height: 72px;
+        border-radius: 50%;
+        border: 6px solid var(--green);
+        background: var(--bg);
+        box-shadow: 0 6px 16px rgba(0, 0, 0, 0.06);
+        object-fit: cover;
+      }
+
+      .brand h1 {
+        margin: 0;
+        font-size: clamp(20px, 3vw, 28px);
+        color: var(--green-dark);
+      }
+
+      .brand small {
+        color: #47695c;
+      }
+
+      label {
+        display: block;
+        font-weight: 600;
+        margin: 14px 0 8px;
+      }
+      .inp {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        border: 1.5px solid rgba(31, 74, 59, 0.3);
+        border-radius: 12px;
+        background: #fff;
+        padding: 12px 14px;
+        transition: border-color 0.15s, box-shadow 0.15s;
+      }
+      .inp:focus-within {
+        border-color: var(--beige);
+        box-shadow: var(--focus);
+      }
+      .inp input {
+        border: 0;
+        outline: 0;
+        width: 100%;
+        font: inherit;
+        color: var(--green);
+        background: transparent;
+      }
+
+      .btn {
+        display: inline-flex;
+        justify-content: center;
+        align-items: center;
+        gap: 10px;
+        width: 100%;
+        margin-top: 18px;
+        padding: 14px;
+        border: 0;
+        border-radius: 14px;
+        cursor: pointer;
+        background: var(--green);
+        color: #fff;
+        font-weight: 700;
+        box-shadow: 0 6px 16px rgba(0, 0, 0, 0.08);
+        transition: background 0.15s, transform 0.05s;
+      }
+      .btn:hover {
+        background: var(--green-dark);
+      }
+      .btn:active {
+        transform: translateY(1px);
+      }
+
+      .alt {
+        margin-top: 16px;
+        text-align: center;
+        color: #4b6a5e;
+      }
+      .alt a {
+        color: var(--beige);
+        text-decoration: none;
+        font-weight: 700;
+      }
+      .alt a:hover {
+        text-decoration: underline;
+      }
+
+      .visual {
+        padding: 18px 10px;
+        text-align: center;
+      }
+      .poster {
+        margin: 18px auto 0;
+        width: min(560px, 86%);
+        aspect-ratio: 1/1;
+        border-radius: 50%;
+        border: 14px solid var(--green);
+        background: var(--bg);
+        box-shadow: var(--shadow);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .poster img {
+        width: 70%;
+        height: auto;
+        border-radius: 50%;
+        object-fit: cover;
+      }
+
+      .note {
+        margin-top: 16px;
+        color: #47695c;
+        font-size: 14px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="ring"></div>
+
+    <div class="wrap">
+      <!-- Vizu√°ln√≠ panel -->
+      <section class="visual">
+        <div class="poster">
+          <!-- üî∏ –∑–¥–µ—Å—å —Ç–≤–æ–π –æ—Å–Ω–æ–≤–Ω–æ–π –ª–æ–≥–æ—Ç–∏–ø -->
+          <img src="Image ƒçasopis.png" alt="Logo ƒçasopisu" />
+        </div>
+        <p class="note">
+          P≈ôihlaste se pro pod√°n√≠ ƒçl√°nku, spr√°vu recenz√≠ a publikaci vyd√°n√≠
+        </p>
+      </section>
+
+      <!-- Formul√°≈ô -->
+      <section class="card">
+        <div class="brand">
+          <!-- üî∏ –º–∞–ª–µ–Ω—å–∫–∏–π –ª–æ–≥–æ—Ç–∏–ø -->
+          <img src="Image ƒçasopis.png" alt="Mini logo" />
+          <div>
+            <h1>Gastro ƒåasopis Jihlava</h1>
+            <small>P≈ôihl√°≈°en√≠ do syst√©mu</small>
+          </div>
+        </div>
+
+        <form id="loginForm">
+          <label for="email">E-mail</label>
+          <div class="inp">
+            <input
+              type="email"
+              id="email"
+              placeholder="autor@priklad.cz"
+              required
+            />
+          </div>
+
+          <label for="password">Heslo</label>
+          <div class="inp">
+            <input
+              type="password"
+              id="password"
+              placeholder="‚Ä¢‚Ä¢‚Ä¢‚Ä¢‚Ä¢‚Ä¢‚Ä¢‚Ä¢"
+              required
+            />
+          </div>
+
+          <button type="submit" class="btn">P≈ôihl√°sit se</button>
+
+          <p class="alt">
+            Nem√°te √∫ƒçet? <a href="registrace.html">Registrace</a>
+          </p>
+        </form>
+      </section>
+    </div>
+
+    <script>
+const form = document.getElementById("loginForm");
+
+form.addEventListener("submit", (e) => {
+  e.preventDefault();
+
+  // »ÒÔÓÎ¸ÁÛÂÏ id=email, ‡ ÌÂ username
+  const email = form.email.value.trim();
+  const password = form.password.value.trim();
+
+  if (!email || !password) {
+    alert("Vyplnte prosim e-mail a heslo.");
+    return;
+  }
+
+  // œÓ‰„ÓÚ‡‚ÎË‚‡ÂÏ ‰‡ÌÌ˚Â ‰Îˇ ÓÚÔ‡‚ÍË
+  const formData = new FormData();
+  formData.append("email", email); // login.php ÓÊË‰‡ÂÚ $_POST['username']
+  formData.append("password", password);
+
+  // ŒÚÔ‡‚ÎˇÂÏ POST-Á‡ÔÓÒ Ì‡ PHP
+  fetch("login.php", {
+    method: "POST",
+    body: formData
+  })
+    .then(response => {
+      if (!response.ok) {
+        throw new Error("Chyba serveru: " + response.status);
+      }
+      return response.text();
+    })
+    .then(data => {
+      // œÓÍ‡Á˚‚‡ÂÏ ÓÚ‚ÂÚ ÔÓ‰ ÙÓÏÓÈ
+      let result = document.getElementById("result");
+      if (!result) {
+        result = document.createElement("p");
+        result.id = "result";
+        form.appendChild(result);
+      }
+      result.textContent = data;
+      console.log("Odpoved od PHP:", data);
+    })
+    .catch(error => {
+      console.error("Chyba:", error);
+      let result = document.getElementById("result");
+      if (!result) {
+        result = document.createElement("p");
+        result.id = "result";
+        form.appendChild(result);
+      }
+      result.textContent = "Doslo k chybe pri prihlaseni.";
+    });
+});
+</script>  </body>
+</html>
