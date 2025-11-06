@@ -294,10 +294,10 @@ document
 
     // Формируем FormData для передачи как $_POST
     const formData = new FormData();
-    formData.append("username", name);  // важно: совпадает с $_POST['username']
+    formData.append("username", name);
     formData.append("email", email);
     formData.append("password", password);
-    formData.append("role", role);      // можно игнорировать в PHP, если не нужно
+    formData.append("role", role);
 
     // Отправляем POST-запрос на register.php
     fetch("register.php", {
