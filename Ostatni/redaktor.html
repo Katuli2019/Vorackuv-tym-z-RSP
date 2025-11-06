@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="cs">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="64x64" href="favicon-64x64.png" />
+
+    <title>GaČas Jihlava</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600&family=Poppins:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        --green: #1f4a3b;
+        --green-dark: #0e2921;
+        --beige: #c89a5a;
+        --bg: #f9f7f3;
+        --white: #fff;
+        --radius: 14px;
+      }
+
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+
+      body {
+        display: flex;
+        height: 100vh;
+        background: linear-gradient(180deg, #faf8f4 0%, #ffffff 100%);
+        font-family: "Poppins", sans-serif;
+        color: var(--green-dark);
+      }
+
+      /* Sidebar */
+      aside {
+        width: 250px;
+        background: #f3f1ed;
+        border-right: 1px solid rgba(0, 0, 0, 0.05);
+        display: flex;
+        flex-direction: column;
+        padding: 2rem 1.2rem;
+      }
+
+      aside h2 {
+        font-family: "Playfair Display", serif;
+        font-size: 1.4rem;
+        color: var(--green);
+        margin-bottom: 2.5rem;
+        text-align: center;
+        border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+        padding-bottom: 0.8rem;
+      }
+
+      nav a {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        text-decoration: none;
+        color: var(--green-dark);
+        padding: 0.75rem 1rem;
+        margin-bottom: 0.3rem;
+        border-radius: 10px;
+        font-weight: 500;
+        transition: all 0.25s ease;
+      }
+
+      nav a:hover,
+      nav a.active {
+        background: var(--green);
+        color: white;
+        transform: translateX(4px);
+      }
+
+      /* Header */
+      header {
+        background: var(--green);
+        color: var(--white);
+        padding: 1.2rem 2rem;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        flex-wrap: wrap;
+      }
+
+      header h1 {
+        font-family: "Playfair Display", serif;
+        font-size: 1.5rem;
+        margin: 0;
+      }
+
+      header nav {
+        display: flex;
+        gap: 1.5rem;
+      }
+
+      header nav a {
+        color: var(--white);
+        text-decoration: none;
+        font-weight: 500;
+        transition: 0.3s;
+      }
+
+      header nav a:hover {
+        text-decoration: underline;
+        color: var(--beige);
+      }
+
+      /* Main */
+      main {
+        flex: 1;
+        padding: 2rem;
+        overflow-y: auto;
+      }
+
+      .welcome h2 {
+        font-family: "Playfair Display", serif;
+        font-size: 1.6rem;
+        margin-bottom: 0.4rem;
+      }
+
+      /* Table */
+      table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 1rem;
+        background: white;
+        border-radius: var(--radius);
+        overflow: hidden;
+      }
+
+      th,
+      td {
+        text-align: left;
+        padding: 0.9rem 1rem;
+        border-bottom: 1px solid #e6e6e6;
+      }
+
+      th {
+        background: var(--bg);
+        color: var(--green-dark);
+      }
+
+      tr:hover {
+        background: #faf7f2;
+      }
+
+      select {
+        padding: 0.5rem;
+        border-radius: 8px;
+        border: 1px solid #ccc;
+        font-family: inherit;
+      }
+
+      .status {
+        font-weight: 600;
+        padding: 0.3rem 0.7rem;
+        border-radius: 8px;
+        color: white;
+      }
+
+      .status.novy {
+        background: #c89a5a;
+      }
+      .status.recenze {
+        background: #1f4a3b;
+      }
+      .status.prijat {
+        background: #4a8c67;
+      }
+      .status.zamitnut {
+        background: #b33a3a;
+      }
+
+      button {
+        background: var(--beige);
+        color: white;
+        border: none;
+        padding: 0.6rem 1rem;
+        border-radius: 8px;
+        cursor: pointer;
+        font-weight: 600;
+        transition: 0.25s;
+      }
+
+      button:hover {
+        background: #b8824a;
+      }
+
+      .card {
+        background: #fff;
+        border-radius: var(--radius);
+        box-shadow: 0 4px 14px rgba(0, 0, 0, 0.04);
+        padding: 1.6rem;
+        border: 1px solid rgba(0, 0, 0, 0.05);
+        margin-top: 2rem;
+      }
+
+      textarea {
+        width: 100%;
+        padding: 0.9rem;
+        border-radius: 10px;
+        border: 1px solid #ccc;
+        margin-bottom: 0.8rem;
+        font-family: inherit;
+        resize: none;
+      }
+    </style>
+  </head>
+  <body>
+    <aside>
+      <h2>Redaktor</h2>
+      <nav>
+        <a href="redaktor.html" class="active">📊 Dashboard</a>
+        <a href="redaktor-komunikace.html">💬 Komunikace</a>
+        <a href="redaktor-nastaveni.html">⚙️ Nastavení</a>
+      </nav>
+    </aside>
+
+    <div style="flex: 1; display: flex; flex-direction: column">
+      <header>
+        <h1>Redaktora – GaČas Jihlava</h1>
+        <nav>
+          <a href="hlavnist.html">Domů</a>
+          <a href="login.html">Odhlásit se</a>
+        </nav>
+      </header>
+
+      <main>
+        <div class="welcome">
+          <h2>👋 Vítejte zpět, redaktore!</h2>
+          <p>Zde můžeš spravovat články, recenze a komunikaci s autory.</p>
+        </div>
+
+        <div class="card">
+          <h2>📑 Seznam článků</h2>
+          <table>
+            <thead>
+              <tr>
+                <th>Název</th>
+                <th>Autor</th>
+                <th>Recenzent</th>
+                <th>Stav</th>
+                <th>Akce</th>
+              </tr>
+            </thead>
+            <tbody id="articleTable">
+              <tr>
+                <td>Kam v Jihlavě</td>
+                <td>Andrianna Nhuien</td>
+                <td>
+                  <select>
+                    <option>Iryna Rusa</option>
+                    <option>Oleh Yanovskyi</option>
+                    <option selected>—</option>
+                  </select>
+                </td>
+                <td><span class="status novy">Nový</span></td>
+                <td>
+                  <button onclick="changeStatus(this)">Změnit stav</button>
+                </td>
+              </tr>
+              <tr>
+                <td>Restaurace U Zlatého Lva</td>
+                <td>Kira Dovbnia</td>
+                <td>
+                  <select>
+                    <option selected>Iryna Rusa</option>
+                    <option>Oleh Yanovskyi</option>
+                  </select>
+                </td>
+                <td><span class="status recenze">V recenzi</span></td>
+                <td>
+                  <button onclick="changeStatus(this)">Změnit stav</button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="card">
+          <h2>💬 Komunikace s autorem</h2>
+          <textarea
+            rows="3"
+            placeholder="Zde napište zprávu autorovi o úpravách článku..."
+          ></textarea>
+          <button onclick="sendMessage()">Odeslat zprávu</button>
+          <p id="confirmation" style="margin-top: 0.8rem; color: #4a8c67"></p>
+        </div>
+      </main>
+    </div>
+
+    <script>
+      function changeStatus(button) {
+        const row = button.closest("tr");
+        const statusCell = row.querySelector(".status");
+        const current = statusCell.classList;
+
+        if (current.contains("novy")) {
+          statusCell.textContent = "V recenzi";
+          current.remove("novy");
+          current.add("recenze");
+        } else if (current.contains("recenze")) {
+          statusCell.textContent = "Přijatý";
+          current.remove("recenze");
+          current.add("prijat");
+        } else if (current.contains("prijat")) {
+          statusCell.textContent = "Zamítnutý";
+          current.remove("prijat");
+          current.add("zamitnut");
+        } else {
+          statusCell.textContent = "Nový";
+          current.remove("zamitnut");
+          current.add("novy");
+        }
+      }
+
+      function sendMessage() {
+        const textarea = document.querySelector("textarea");
+        const message = textarea.value.trim();
+        const confirmation = document.getElementById("confirmation");
+
+        if (message) {
+          confirmation.textContent =
+            "✅ Zpráva byla úspěšně odeslána autorovi.";
+          textarea.value = "";
+        } else {
+          confirmation.textContent =
+            "⚠️ Prosím, napište zprávu před odesláním.";
+        }
+
+        setTimeout(() => (confirmation.textContent = ""), 4000);
+      }
+    </script>
+  </body>
+</html>
