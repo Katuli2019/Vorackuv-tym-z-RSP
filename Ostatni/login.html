@@ -202,10 +202,8 @@
     <div class="ring"></div>
 
     <div class="wrap">
-      <!-- VizuÃ¡lnÃ­ panel -->
       <section class="visual">
         <div class="poster">
-          <!-- ðŸ”¸ Ð·Ð´ÐµÑÑŒ Ñ‚Ð²Ð¾Ð¹ Ð¾ÑÐ½Ð¾Ð²Ð½Ð¾Ð¹ Ð»Ð¾Ð³Ð¾Ñ‚Ð¸Ð¿ -->
           <img src="Image Äasopis.png" alt="Logo Äasopisu" />
         </div>
         <p class="note">
@@ -213,10 +211,8 @@
         </p>
       </section>
 
-      <!-- FormulÃ¡Å™ -->
       <section class="card">
         <div class="brand">
-          <!-- ðŸ”¸ Ð¼Ð°Ð»ÐµÐ½ÑŒÐºÐ¸Ð¹ Ð»Ð¾Ð³Ð¾Ñ‚Ð¸Ð¿ -->
           <img src="Image Äasopis.png" alt="Mini logo" />
           <div>
             <h1>Gastro ÄŒasopis Jihlava</h1>
@@ -224,11 +220,13 @@
           </div>
         </div>
 
-        <form id="loginForm">
+        <!-- âœ” Ð˜ÑÐ¿Ñ€Ð°Ð²Ð»ÐµÐ½Ð½Ð°Ñ Ñ„Ð¾Ñ€Ð¼Ð° -->
+        <form action="login.php" method="POST">
           <label for="email">E-mail</label>
           <div class="inp">
             <input
               type="email"
+              name="email"
               id="email"
               placeholder="autor@priklad.cz"
               required
@@ -239,6 +237,7 @@
           <div class="inp">
             <input
               type="password"
+              name="password"
               id="password"
               placeholder="â€¢â€¢â€¢â€¢â€¢â€¢â€¢â€¢"
               required
@@ -253,59 +252,5 @@
         </form>
       </section>
     </div>
-
-    <script>
-const form = document.getElementById("loginForm");
-
-form.addEventListener("submit", (e) => {
-  e.preventDefault();
-
-  // Èñïîëüçóåì id=email, à íå username
-  const email = form.email.value.trim();
-  const password = form.password.value.trim();
-
-  if (!email || !password) {
-    alert("Vyplnte prosim e-mail a heslo.");
-    return;
-  }
-
-  // Ïîäãîòàâëèâàåì äàííûå äëÿ îòïðàâêè
-  const formData = new FormData();
-  formData.append("email", email); // login.php îæèäàåò $_POST['username']
-  formData.append("password", password);
-
-  // Îòïðàâëÿåì POST-çàïðîñ íà PHP
-  fetch("login.php", {
-    method: "POST",
-    body: formData
-  })
-    .then(response => {
-      if (!response.ok) {
-        throw new Error("Chyba serveru: " + response.status);
-      }
-      return response.text();
-    })
-    .then(data => {
-      // Ïîêàçûâàåì îòâåò ïîä ôîðìîé
-      let result = document.getElementById("result");
-      if (!result) {
-        result = document.createElement("p");
-        result.id = "result";
-        form.appendChild(result);
-      }
-      result.textContent = data;
-      console.log("Odpoved od PHP:", data);
-    })
-    .catch(error => {
-      console.error("Chyba:", error);
-      let result = document.getElementById("result");
-      if (!result) {
-        result = document.createElement("p");
-        result.id = "result";
-        form.appendChild(result);
-      }
-      result.textContent = "Doslo k chybe pri prihlaseni.";
-    });
-});
-</script>  </body>
+  </body>
 </html>

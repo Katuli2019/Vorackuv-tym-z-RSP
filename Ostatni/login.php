@@ -11,8 +11,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         exit;
     }
 
-    // œÓ‚ÂˇÂÏ, ÂÒÚ¸ ÎË Ú‡ÍÓÈ ÔÓÎ¸ÁÓ‚‡ÚÂÎ¸
-    $stmt = $conn->prepare("SELECT id, email, password_hash FROM users WHERE email = ?");
+    // –ü–æ–ª—É—á–∞–µ–º id, email, –ø–∞—Ä–æ–ª—å –∏ —Ä–æ–ª—å
+    $stmt = $conn->prepare("SELECT id, email, password_hash, role FROM users WHERE email = ?");
     $stmt->bind_param("s", $email);
     $stmt->execute();
     $result = $stmt->get_result();
@@ -20,7 +20,23 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     if ($user && password_verify($password, $user['password_hash'])) {
         $_SESSION['user_id'] = $user['id'];
-        echo "Prihlaseni uspesne";
+        $_SESSION['role'] = $user['role'];
+
+        // –†–µ–¥–∏—Ä–µ–∫—Ç—ã –ø–æ —Ä–æ–ª–∏
+        if ($user['role'] === 'autor') {
+            header("Location: autor.html");
+            exit;
+        } 
+        elseif ($user['role'] === 'redaktor') {
+            header("Location: redaktor.html");
+            exit;
+        } 
+        else {
+            // fallback ‚Äì –Ω–µ–∏–∑–≤–µ—Å—Ç–Ω–∞—è —Ä–æ–ª—å
+            header("Location: main.html");
+            exit;
+        }
+
     } else {
         echo "Nespravne uzivatelske jmeno nebo heslo.";
     }
