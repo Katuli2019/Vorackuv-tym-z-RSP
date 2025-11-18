@@ -3,11 +3,12 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
+    
     <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png" />
     <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png" />
     <link rel="icon" type="image/png" sizes="64x64" href="favicon-64x64.png" />
 
-    <title>GaČas Jihlava</title>
+    <title>Gastro Časopis Jihlava</title>
     <link
       href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&family=Poppins:wght@300;400;600&display=swap"
       rel="stylesheet"
@@ -35,7 +36,7 @@
         overflow-x: hidden;
       }
 
-      /* ---------------- NAVIGACE ---------------- */
+      /* ──────────────── NAVIGACE (JEDNOTNÁ) ──────────────── */
       nav {
         width: 100%;
         background: var(--white);
@@ -69,12 +70,13 @@
         border-radius: 8px;
       }
 
-      .nav-right a:hover {
+      .nav-right a:hover,
+      .nav-right a.active {
         background: rgba(200, 154, 90, 0.1);
         color: var(--beige);
       }
 
-      /* ---------------- HERO SEKCIA ---------------- */
+      /* ──────────────── HERO SEKCIA ──────────────── */
       .hero {
         background: linear-gradient(
             rgba(31, 74, 59, 0.6),
@@ -146,7 +148,7 @@
         color: var(--green-dark);
       }
 
-      /* ---------------- OBSAH ---------------- */
+      /* ──────────────── OBSAH ──────────────── */
       section.about {
         max-width: 850px;
         background: var(--white);
@@ -165,6 +167,7 @@
         margin-bottom: 1rem;
         position: relative;
       }
+
       section.about h2::after {
         content: "";
         position: absolute;
@@ -188,7 +191,7 @@
         color: #607b70;
         padding: 2.5rem 1rem;
       }
-      /* ---------------- AKTUÁLNÍ ČLÁNEK ---------------- */
+      /* ──────────────── AKTUÁLNÍ ČLÁNEK ──────────────── */
       section.article {
         max-width: 850px;
         margin: 2rem auto 4rem;
@@ -220,7 +223,7 @@
         transition: 0.3s;
       }
 
-      .article a:hover {
+      section.article a:hover {
         color: var(--beige);
         border-color: var(--green);
       }
@@ -253,11 +256,11 @@
 
   <body>
     <nav>
-      <div class="nav-left">GaČas Jihlava</div>
+      <div class="nav-left">Gačas Jihlava</div>
       <div class="nav-right">
-        <a href="hlavnist.php" style="color: var(--beige)">O magazínu</a>
+        <a href="hlavnist.php" class="active">O magazínu</a>
         <a href="clanek.php">Články</a>
-        <a href="fotogalerie.html">Fotogalerie</a>
+        <a href="fotogalereia.php">Fotogalerie</a>
         <a href="reklama.html">Reklama/Partneři</a>
         <a href="kontakty.html">Kontakty</a>
         <a href="archiv.html">Archiv</a>

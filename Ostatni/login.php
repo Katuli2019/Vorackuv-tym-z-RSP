@@ -3,42 +3,38 @@ include 'db.php';
 session_start();
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $email = $_POST['email'] ?? '';
-    $password = $_POST['password'] ?? '';
+    $email = trim($_POST['email']);
+    $password = trim($_POST['password']);
 
-    if (empty($email) || empty($password)) {
-        echo "Chyba: vyplnte prihlasovaci udaje.";
-        exit;
-    }
-
-    // Получаем id, email, пароль и роль
-    $stmt = $conn->prepare("SELECT id, email, password_hash, role FROM users WHERE email = ?");
+    $stmt = $conn->prepare("SELECT id, password_hash, role FROM users WHERE email = ?");
     $stmt->bind_param("s", $email);
     $stmt->execute();
     $result = $stmt->get_result();
     $user = $result->fetch_assoc();
 
     if ($user && password_verify($password, $user['password_hash'])) {
+
         $_SESSION['user_id'] = $user['id'];
         $_SESSION['role'] = $user['role'];
+        $_SESSION['username'] = $user['username'];
 
-        // Редиректы по роли
+
         if ($user['role'] === 'autor') {
-            header("Location: autor.html");
+            header("Location: autor.php");
             exit;
-        } 
-        elseif ($user['role'] === 'redaktor') {
-            header("Location: redaktor.html");
+        } elseif ($user['role'] === 'redaktor') {
+            header("Location: redaktor.php");
             exit;
-        } 
-        else {
-            // fallback – неизвестная роль
-            header("Location: main.html");
+        } elseif ($user['role'] === 'recenzent') {
+            header("Location: recenzent.php");
+            exit;
+        } elseif ($user['role'] === 'admin') {
+            header("Location: admin.php");
             exit;
         }
 
     } else {
-        echo "Nespravne uzivatelske jmeno nebo heslo.";
+        echo "<script>alert('Nesprávný email nebo heslo.'); history.back();</script>";
     }
 
     $stmt->close();

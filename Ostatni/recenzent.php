@@ -1,12 +1,17 @@
 <?php
 session_start();
+
+// Только рецензент
 if (!isset($_SESSION['user_id']) || $_SESSION['role'] !== 'recenzent') {
-    header("Location: login.php");
+    header("Location: login.html");
     exit;
 }
+
+// Путь к JSON
+$jsonFile = __DIR__ . '/uploads/articles.json';
+$articles = file_exists($jsonFile) ? json_decode(file_get_contents($jsonFile), true) : [];
+
 ?>
-
-
 <!DOCTYPE html>
 <html lang="cs">
   <head>
@@ -282,30 +287,6 @@ if (!isset($_SESSION['user_id']) || $_SESSION['role'] !== 'recenzent') {
       .submit-btn:hover {
         background: #b8824a;
       }
-
-      .accordion {
-    cursor: pointer;
-    padding: 1rem;
-    background: #e8e5df;
-    border-radius: 10px;
-    margin-bottom: .6rem;
-    font-weight: 600;
-    transition: .3s;
-}
-
-.accordion:hover {
-    background: #d7d3cc;
-}
-
-.panel {
-    display: none;
-    margin-top: .5rem;
-}
-
-.panel.open {
-    display: block;
-}
-
     </style>
   </head>
   <body>
@@ -313,8 +294,7 @@ if (!isset($_SESSION['user_id']) || $_SESSION['role'] !== 'recenzent') {
       <h2>Recenzent</h2>
       <nav>
         <a href="#" class="active">📊 Dashboard</a>
-        <a href="recenzent-komunikace.php">💬 Komunikace</a>
-        <a href="recenzent-nastaveni.php">👤 Profil</a>
+       <a href="recenzent-nastaveni.php">👤 Profil</a>
       </nav>
     </aside>
     <div style="flex: 1; display: flex; flex-direction: column">
@@ -322,77 +302,54 @@ if (!isset($_SESSION['user_id']) || $_SESSION['role'] !== 'recenzent') {
         <h1>Recenzenta – Gastro Časopis Jihlava</h1>
         <nav>
           <a href="hlavnist.php">Domů</a>
-          <a href="clanek.html">Články</a>
+          <a href="clanek.php">Články</a>
           <a href="login.php">Odhlásit se</a>
         </nav>
       </header>
       <main>
-        <?php foreach ($assigned_articles as $article): ?>
-
-<div class="card">
-
-    <div class="accordion" onclick="togglePanel(<?= $article['id'] ?>)">
-        📰 <?= htmlspecialchars($article['title']) ?> — klikni pro otevření
-    </div>
-
-    <div class="panel" id="panel-<?= $article['id'] ?>">
-
-        <p><strong>Autor:</strong> <?= $article['author'] ?></p>
-        <p><strong>Termín:</strong> <?= $article['deadline'] ?></p>
-        <p><strong>Stav:</strong> <?= $article['status'] ?></p>
-
-        <hr>
-
-        <form action="save_review.php" method="POST">
-
-            <input type="hidden" name="article_id" value="<?= $article['id'] ?>">
-
-            <div class="rating-grid">
-                <?php 
-                $fields = ["Odborná úroveň","Originalita","Aktuálnost tématu","Struktura a logika","Jazyková úroveň","Celkový dojem"];
-                foreach ($fields as $field): ?>
-                    <div class="rating-item">
-                        <h4><?= $field ?></h4>
-                        <select name="rating[<?= $field ?>]">
-                            <?php for ($i = 1; $i <= 5; $i++): ?>
-                                <option value="<?= $i ?>"><?= $i ?></option>
-                            <?php endfor; ?>
-                        </select>
-                    </div>
-                <?php endforeach; ?>
-            </div>
-
-            <div class="comment-section">
-                <label><strong>Komentář:</strong></label>
-                <textarea name="comment" rows="4"></textarea>
-            </div>
-
-            <div class="result-section">
-                <label><strong>Výsledek:</strong></label>
-                <select name="result">
-                    <option value="">Vyberte...</option>
-                    <option value="accepted">Schválit</option>
-                    <option value="revision">Úpravy</option>
-                    <option value="rejected">Zamítnout</option>
-                </select>
-            </div>
-
-            <button class="submit-btn">Odeslat recenzi</button>
-        </form>
-
-    </div>
-</div>
-
-<?php endforeach; ?>
-
-      </main>
-    </div>
-    <script>
-function togglePanel(id) {
-    const panel = document.getElementById("panel-" + id);
-    panel.classList.toggle("open");
-}
-</script>
-
-  </body>
+        <div class="card">
+          <h2>Přidělené články</h2>
+          <table>
+            <thead>
+              <tr>
+                <th>Název</th>
+                <th>Autor</th>
+                <th>Termín</th>
+                <th>Stav</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Kam v Jihlavě</td>
+                <td>Andrianna Nhuien</td>
+                <td>10. listopadu</td>
+                <td>Čeká na recenzi</td>
+              </tr>
+            </tbody>
+          <tbody>
+            <?php
+            $found = false;
+            foreach ($articles as $a) {
+              if (in_array($a['status'], ['hotovo', 'recenze'])) {
+                $found = true;
+                echo "<tr>
+                        <td>{$a['title']}</td>
+                        <td>" . ($a['author_name'] ?? '-') . "</td>
+                        <td>" . ($a['editor_name'] ?? '-') . "</td>
+                        <td>{$a['created']}</td>
+                        <td class='status {$a['status']}'>{$a['status']}</td>
+                        <td><a href='recenze-detail.php?id={$a['id']}'><button>📖 Otevřít</button></a></td>
+                      </tr>";
+              }
+            }
+            if (!$found) {
+              echo "<tr><td colspan='6' style='text-align:center; color:#777;'>Žádné články k recenzi</td></tr>";
+            }
+            ?>
+          </tbody>
+        </table>
+      </div>
+    </main>
+  </div>
+</body>
 </html>

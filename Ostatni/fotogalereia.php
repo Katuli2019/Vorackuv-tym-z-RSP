@@ -3,15 +3,17 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
+    
     <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png" />
     <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png" />
     <link rel="icon" type="image/png" sizes="64x64" href="favicon-64x64.png" />
-
-    <title>GaČas Jihlava</title>
+    
+    <title>Fotogalerie | Gastro Časopis Jihlava</title>
     <link
       href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&family=Poppins:wght@300;400;600&display=swap"
       rel="stylesheet"
     />
+    <link rel="stylesheet" href="style.css" />
     <style>
       :root {
         --green: #1f4a3b;
@@ -35,7 +37,7 @@
         overflow-x: hidden;
       }
 
-      /* ---------------- NAVIGACE ---------------- */
+      /* ──────────────── NAVIGACE ──────────────── */
       nav {
         width: 100%;
         background: var(--white);
@@ -69,12 +71,13 @@
         border-radius: 8px;
       }
 
-      .nav-right a:hover {
+      .nav-right a:hover,
+      .nav-right a.active { /* Добавил .active для единообразия */
         background: rgba(200, 154, 90, 0.1);
         color: var(--beige);
       }
 
-      /* ---------------- HERO SEKCIA ---------------- */
+      /* ──────────────── HERO SEKCIA ──────────────── */
       .hero {
         background: linear-gradient(
             rgba(31, 74, 59, 0.6),
@@ -105,7 +108,7 @@
       .hero p {
         font-size: 1.2rem;
         letter-spacing: 1px;
-        color: #334c40;
+        color: #ddebe3; /* Изменено с #334c40 для лучшей читаемости */
         max-width: 700px;
         margin: 0 auto 2.5rem;
         line-height: 1.6;
@@ -146,7 +149,7 @@
         color: var(--green-dark);
       }
 
-      /* ---------------- OBSAH ---------------- */
+      /* ──────────────── OBSAH ──────────────── */
       section.about {
         max-width: 850px;
         background: var(--white);
@@ -165,6 +168,7 @@
         margin-bottom: 1rem;
         position: relative;
       }
+
       section.about h2::after {
         content: "";
         position: absolute;
@@ -188,7 +192,7 @@
         color: #607b70;
         padding: 2.5rem 1rem;
       }
-      /* ---------------- AKTUÁLNÍ ČLÁNEK ---------------- */
+      /* ──────────────── AKTUÁLNÍ ČLÁNEK ──────────────── */
       section.article {
         max-width: 850px;
         margin: 2rem auto 4rem;
@@ -220,16 +224,9 @@
         transition: 0.3s;
       }
 
-      .article a:hover {
+      section.article a:hover {
         color: var(--beige);
         border-color: var(--green);
-      }
-
-      footer {
-        text-align: center;
-        font-size: 0.9rem;
-        color: #607b70;
-        padding: 2.5rem 1rem;
       }
 
       @media (max-width: 768px) {
@@ -248,16 +245,117 @@
           margin-top: -3rem;
         }
       }
+      /* ──────────────── ЛОГОТИП НА ФОНЕ СТРАНИЦЫ ──────────────── */
+body::before {
+  content: "";
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  width: 900px; /* размер логотипа */
+  height: 900px;
+  background: url("bek1.png") center/contain no-repeat;
+  opacity: 0.1; /* прозрачность — можно увеличить до 0.07 */
+  transform: translate(-50%, -50%) rotate(-8deg);
+  z-index: -1; /* логотип за контентом */
+  pointer-events: none;
+  filter: blur(0.3px);
+}
+/* ──────────────── ЖИВАЯ / ANIMATED GRID ──────────────── */
+.gallery {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 1.8rem;
+  margin-top: 2.5rem;
+  position: relative;
+  z-index: 1;
+}
+
+/* Фото — как живые элементы */
+.gallery img {
+  width: 100%;
+  aspect-ratio: 4/3;
+  object-fit: cover;
+  border-radius: 16px;
+  box-shadow: 0 12px 28px rgba(0,0,0,0.15);
+  transition: transform 0.9s cubic-bezier(.25, .8, .25, 1),
+              box-shadow 0.6s ease,
+              filter 0.6s ease;
+  
+  /* лёгкое микро-движение */
+  animation: float 6s ease-in-out infinite;
+}
+
+/* При наведении — усиленная динамика */
+.gallery img:hover {
+  transform: scale(1.07) translateY(-10px);
+  box-shadow: 0 18px 45px rgba(0,0,0,0.25);
+  filter: brightness(1.05);
+  animation-play-state: paused;
+}
+
+/* микро-анимация “дыхание” */
+@keyframes float {
+  0%   { transform: translateY(0px); }
+  50%  { transform: translateY(-8px); }
+  100% { transform: translateY(0px); }
+}
+
+/* Для разных фото — разные смещения */
+.gallery img:nth-child(3n) {
+  animation-delay: 0.7s;
+}
+.gallery img:nth-child(4n) {
+  animation-delay: 1.2s;
+}
+.gallery img:nth-child(5n) {
+  animation-delay: 2s;
+}
+
+/* ──────────────── LIGHTBOX (увеличение фото) ──────────────── */
+#lightbox {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.75);
+  backdrop-filter: blur(4px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.4s ease;
+  z-index: 2000;
+}
+
+#lightbox.active {
+  opacity: 1;
+  visibility: visible;
+}
+
+#lightbox img {
+  max-width: 90%;
+  max-height: 90%;
+  border-radius: 16px;
+  box-shadow: 0 20px 45px rgba(0,0,0,0.4);
+  transform: scale(0.85);
+  transition: transform 0.4s ease;
+}
+
+#lightbox.active img {
+  transform: scale(1);
+}
     </style>
   </head>
 
-  <body>
+  <body class="page-fotogalerie">
     <nav>
-      <div class="nav-left">GaČas Jihlava</div>
+      <div class="nav-left">Gačas Jihlava</div>
       <div class="nav-right">
-        <a href="hlavnist.php" style="color: var(--beige)">O magazínu</a>
+        <a href="hlavnist.php">O magazínu</a>
         <a href="clanek.php">Články</a>
-        <a href="fotogalerie.html">Fotogalerie</a>
+        <a href="fotogalereia.php" class="active">Fotogalerie</a>
         <a href="reklama.html">Reklama/Partneři</a>
         <a href="kontakty.html">Kontakty</a>
         <a href="archiv.html">Archiv</a>
@@ -265,47 +363,49 @@
       </div>
     </nav>
 
-    <section class="hero">
-      <img src="Image časopis.png" alt="Logo časopisu" />
-      <h1>Gastro Časopis Jihlava</h1>
-      <p>
-        Magazín o gastronomii, kultuře a městě. Příběhy, vůně a inspirace z
-        Jihlavy – přímo k Vám
-      </p>
-
-      <div class="hero-buttons">
-        <a href="vydani.html" class="primary">Prohlédnout vydání</a>
-        <a href="registrace.html" class="secondary">Připojit se</a>
-      </div>
+    <section class="hero" style="background: linear-gradient(rgba(31,74,59,0.6), rgba(31,74,59,0.6)), url('gallery-bg.jpg') center/cover;">
+      <h1>Fotogalerie</h1>
+      <p>Momentky z akcí, kuchyní a jihlavských podniků.</p>
     </section>
 
     <section class="about">
-      <h2>O nás</h2>
-      <p>
-        <strong>Gastro Časopis Jihlava</strong> je univerzitní projekt, který
-        propojuje studenty, odborníky a milovníky gastronomie. Každé čtvrtletí
-        přinášíme nové téma – od lokálních podniků po akademické studie a
-        kulturní události.
-      </p>
+      <h2>Naše fotografie</h2>
+      <p>Podívejte se na atmosféru z našich gastronomických akcí a reportáží. Každá fotografie vypráví svůj příběh.</p>
 
-      <p>
-        Naším cílem je ukázat, že gastronomie není jen o jídle, ale o lidech,
-        tradicích, inovacích a příbězích, které spojují celé město.
-      </p>
-    </section>
+      <div class="gallery">
+        <img src="foto.jpg" alt="">
+        <img src="hero-img-middle.png" alt="">
+        <img src="about-food-1.jpg" alt="">
+        <img src="images.jpg" alt="">
+        <img src="foto1.jpg" alt="">
+        <img src="stud.jpg" alt="">
+      </div>
 
-    <section class="article">
-      <h2>Aktuální článek</h2>
-      <p>
-        <strong>Chuť Jihlavy:</strong> Jak se mění lokální gastronomie a proč
-        roste zájem o udržitelné suroviny. V novém vydání přinášíme rozhovory se
-        šéfkuchaři, kteří dávají Jihlavě novou tvář.
-      </p>
-      <a href="clanek.php">Číst celý článek →</a>
     </section>
 
     <footer>
-      © 2025 Gastro Časopis Jihlava · Projekt VŠPJ · Všechna práva vyhrazena
+      © 2025 Gastro Časopis Jihlava · Projekt VŠPJ
     </footer>
+    <div id="lightbox">
+      <img id="lightbox-img" src="" alt="">
+    </div>
+<script>
+  const galleryImages = document.querySelectorAll(".gallery img");
+  const lightbox = document.getElementById("lightbox");
+  const lightboxImg = document.getElementById("lightbox-img");
+
+  galleryImages.forEach(img => {
+    img.addEventListener("click", () => {
+      lightboxImg.src = img.src;
+      lightbox.classList.add("active");
+    });
+  });
+
+  // Закрытие при клике на фон
+  lightbox.addEventListener("click", () => {
+    lightbox.classList.remove("active");
+  });
+</script>
+
   </body>
 </html>

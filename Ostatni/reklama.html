@@ -7,11 +7,12 @@
     <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png" />
     <link rel="icon" type="image/png" sizes="64x64" href="favicon-64x64.png" />
 
-    <title>GaČas Jihlava</title>
+    <title>Reklama & Partneři | Gastro Časopis Jihlava</title>
     <link
       href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&family=Poppins:wght@300;400;600&display=swap"
       rel="stylesheet"
     />
+    <link rel="stylesheet" href="style.css" />
     <style>
       :root {
         --green: #1f4a3b;
@@ -35,7 +36,7 @@
         overflow-x: hidden;
       }
 
-      /* ---------------- NAVIGACE ---------------- */
+      /* ──────────────── NAVIGACE (JEDNOTNÁ) ──────────────── */
       nav {
         width: 100%;
         background: var(--white);
@@ -69,12 +70,13 @@
         border-radius: 8px;
       }
 
-      .nav-right a:hover {
+      .nav-right a:hover,
+      .nav-right a.active {
         background: rgba(200, 154, 90, 0.1);
         color: var(--beige);
       }
 
-      /* ---------------- HERO SEKCIA ---------------- */
+      /* ──────────────── HERO SEKCIA ──────────────── */
       .hero {
         background: linear-gradient(
             rgba(31, 74, 59, 0.6),
@@ -146,7 +148,7 @@
         color: var(--green-dark);
       }
 
-      /* ---------------- OBSAH ---------------- */
+      /* ──────────────── OBSAH ──────────────── */
       section.about {
         max-width: 850px;
         background: var(--white);
@@ -165,6 +167,7 @@
         margin-bottom: 1rem;
         position: relative;
       }
+
       section.about h2::after {
         content: "";
         position: absolute;
@@ -188,7 +191,7 @@
         color: #607b70;
         padding: 2.5rem 1rem;
       }
-      /* ---------------- AKTUÁLNÍ ČLÁNEK ---------------- */
+      /* ──────────────── AKTUÁLNÍ ČLÁNEK ──────────────── */
       section.article {
         max-width: 850px;
         margin: 2rem auto 4rem;
@@ -220,7 +223,7 @@
         transition: 0.3s;
       }
 
-      .article a:hover {
+      section.article a:hover {
         color: var(--beige);
         border-color: var(--green);
       }
@@ -253,59 +256,55 @@
 
   <body>
     <nav>
-      <div class="nav-left">GaČas Jihlava</div>
+      <div class="nav-left">Gačas Jihlava</div>
       <div class="nav-right">
-        <a href="hlavnist.php" style="color: var(--beige)">O magazínu</a>
+        <a href="hlavnist.php">O magazínu</a>
         <a href="clanek.php">Články</a>
-        <a href="fotogalerie.html">Fotogalerie</a>
-        <a href="reklama.html">Reklama/Partneři</a>
+        <a href="fotogalereia.php">Fotogalerie</a>
+        <a href="reklama.html" class="active">Reklama/Partneři</a>
         <a href="kontakty.html">Kontakty</a>
         <a href="archiv.html">Archiv</a>
         <a href="login.html">Přihlášení</a>
       </div>
     </nav>
 
-    <section class="hero">
-      <img src="Image časopis.png" alt="Logo časopisu" />
-      <h1>Gastro Časopis Jihlava</h1>
+    <section
+      class="hero"
+      style="
+        background: linear-gradient(
+            rgba(31, 74, 59, 0.6),
+            rgba(31, 74, 59, 0.6)
+          ),
+          url('partners-bg.jpg') center/cover;
+      "
+    >
+      <h1>Reklama a partneři</h1>
       <p>
-        Magazín o gastronomii, kultuře a městě. Příběhy, vůně a inspirace z
-        Jihlavy – přímo k Vám
+        Staňte se součástí našeho projektu a podpořte regionální gastronomii.
       </p>
-
-      <div class="hero-buttons">
-        <a href="vydani.html" class="primary">Prohlédnout vydání</a>
-        <a href="registrace.html" class="secondary">Připojit se</a>
-      </div>
     </section>
 
     <section class="about">
-      <h2>O nás</h2>
+      <h2>Spolupráce a partnerství</h2>
       <p>
-        <strong>Gastro Časopis Jihlava</strong> je univerzitní projekt, který
-        propojuje studenty, odborníky a milovníky gastronomie. Každé čtvrtletí
-        přinášíme nové téma – od lokálních podniků po akademické studie a
-        kulturní události.
+        Nabízíme prostor pro propagaci Vašeho podniku, značky či služby v
+        tištěném i online vydání. Rádi Vám připravíme individuální nabídku podle
+        Vašich potřeb.
       </p>
 
-      <p>
-        Naším cílem je ukázat, že gastronomie není jen o jídle, ale o lidech,
-        tradicích, inovacích a příbězích, které spojují celé město.
+      <ul style="margin-left: 1.5rem; line-height: 1.8">
+        <li>Reklamní články a PR rozhovory</li>
+        <li>Umístění loga v magazínu nebo na webu</li>
+        <li>Prezentace na gastronomických akcích</li>
+        <li>Partnerství s lokální komunitou</li>
+      </ul>
+
+      <p style="margin-top: 1.5rem">
+        📩 Pro více informací nás kontaktujte na
+        <strong>reklama@gacas.cz</strong>.
       </p>
     </section>
 
-    <section class="article">
-      <h2>Aktuální článek</h2>
-      <p>
-        <strong>Chuť Jihlavy:</strong> Jak se mění lokální gastronomie a proč
-        roste zájem o udržitelné suroviny. V novém vydání přinášíme rozhovory se
-        šéfkuchaři, kteří dávají Jihlavě novou tvář.
-      </p>
-      <a href="clanek.php">Číst celý článek →</a>
-    </section>
-
-    <footer>
-      © 2025 Gastro Časopis Jihlava · Projekt VŠPJ · Všechna práva vyhrazena
-    </footer>
+    <footer>© 2025 Gastro Časopis Jihlava · Projekt VŠPJ</footer>
   </body>
 </html>

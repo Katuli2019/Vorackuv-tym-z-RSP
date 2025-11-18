@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="cs">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="64x64" href="favicon-64x64.png" />
+
+    <title>Kontakty | Gastro Časopis Jihlava</title>
+
+    <link
+      href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&family=Poppins:wght@300;400;600&display=swap"
+      rel="stylesheet"
+    />
+
+    <style>
+      :root {
+        --green: #1f4a3b;
+        --green-dark: #0e2921;
+        --beige: #c89a5a;
+        --bg: #f9f7f3;
+        --white: #ffffff;
+        --radius: 16px;
+      }
+
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+
+      body {
+        font-family: "Poppins", sans-serif;
+        background: var(--bg);
+        color: var(--green-dark);
+        overflow-x: hidden;
+      }
+
+      /* ──────────────── NAVIGACE (JEDNOTNÁ) ──────────────── */
+      nav {
+        width: 100%;
+        background: var(--white);
+        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 0.8rem 2rem;
+        position: fixed;
+        top: 0;
+        z-index: 1000;
+      }
+
+      .nav-left {
+        font-family: "Playfair Display", serif;
+        font-size: 1.1rem;
+        font-weight: 700;
+        color: var(--green-dark);
+        letter-spacing: 1px;
+      }
+
+      .nav-right a {
+        color: var(--green-dark);
+        text-decoration: none;
+        font-weight: 500;
+        font-size: 0.9rem;
+        margin-left: 0.1rem;
+        letter-spacing: 0.5px;
+        transition: all 0.25s ease;
+        padding: 6px 10px;
+        border-radius: 8px;
+      }
+
+      .nav-right a:hover,
+      .nav-right a.active {
+        background: rgba(200, 154, 90, 0.1);
+        color: var(--beige);
+      }
+
+      /* ───────────── HERO ───────────── */
+      .hero {
+        background: linear-gradient(
+            rgba(31, 74, 59, 0.6),
+            rgba(31, 74, 59, 0.6)
+          ),
+          url("contact-bg.jpg") center/cover no-repeat;
+        color: var(--white);
+        text-align: center;
+        padding: 5rem 2rem 6rem;
+        margin-top: 70px;
+      }
+
+      .hero h1 {
+        font-family: "Playfair Display", serif;
+        font-size: 3.4rem;
+        margin-bottom: 1rem;
+      }
+
+      .hero p {
+        font-size: 1.2rem;
+        opacity: 0.9;
+      }
+
+      /* ───────────── CONTACT BOX ───────────── */
+      section.about {
+        max-width: 850px;
+        background: var(--white);
+        border-radius: var(--radius);
+        padding: 3rem;
+        margin: -4rem auto 4rem;
+        box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
+        position: relative;
+      }
+
+      section.about h2 {
+        font-family: "Playfair Display", serif;
+        color: var(--green);
+        margin-bottom: 1rem;
+      }
+
+      /* ───────────── FORM ───────────── */
+      .contact-form input,
+      .contact-form textarea {
+        padding: 0.8rem;
+        border-radius: 8px;
+        border: 1px solid #ccc;
+        font-size: 1rem;
+      }
+
+      .contact-form button {
+        background: var(--beige);
+        color: white;
+        border: none;
+        border-radius: 8px;
+        padding: 0.9rem;
+        font-weight: 600;
+        cursor: pointer;
+        transition: 0.3s;
+      }
+      .contact-form button:hover {
+        background: #b58145;
+      }
+
+      /* ───────────── TOAST (ANIMACE) ───────────── */
+      #toast {
+        position: fixed;
+        bottom: 25px;
+        right: 25px;
+        background: #1f4a3b;
+        padding: 16px 22px;
+        border-radius: 12px;
+        color: white;
+        font-weight: 600;
+        box-shadow: 0 8px 25px rgba(0, 0, 0, 0.25);
+        opacity: 0;
+        transform: translateY(30px);
+        pointer-events: none;
+        transition: 0.6s cubic-bezier(0.17, 0.67, 0.3, 1.3);
+        z-index: 2000;
+      }
+
+      #toast.show {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      footer {
+        text-align: center;
+        padding: 2.5rem 1rem;
+        color: #607b70;
+      }
+    </style>
+  </head>
+
+  <body>
+    <nav>
+      <div class="nav-left">Gačas Jihlava</div>
+      <div class="nav-right">
+        <a href="hlavnist.php">O magazínu</a>
+        <a href="clanek.php">Články</a>
+        <a href="fotogalereia.php">Fotogalerie</a>
+        <a href="reklama.html">Reklama/Partneři</a>
+        <a href="kontakty.html" class="active">Kontakty</a>
+        <a href="archiv.html">Archiv</a>
+        <a href="login.html">Přihlášení</a>
+      </div>
+    </nav>
+
+    <section class="hero">
+      <h1>Kontakty</h1>
+      <p>Máte otázky nebo návrh na spolupráci? Napište nám!</p>
+    </section>
+
+    <section class="about">
+      <h2>Kontaktujte nás</h2>
+
+      <p><strong>Email:</strong> redakce@gacas.cz</p>
+      <p><strong>Telefon:</strong> +420 777 123 456</p>
+      <p><strong>Adresa:</strong> VŠPJ, Tolstého 16, Jihlava</p>
+
+      <form
+        id="contactForm"
+        class="contact-form"
+        style="
+          margin-top: 2rem;
+          display: flex;
+          flex-direction: column;
+          gap: 1rem;
+        "
+      >
+        <input type="text" placeholder="Vaše jméno" required />
+        <input type="email" placeholder="Váš e-mail" required />
+        <textarea rows="5" placeholder="Vaše zpráva" required></textarea>
+        <button type="submit">Odeslat zprávu</button>
+      </form>
+    </section>
+
+    <div id="toast">✅ Email byl úspěšně odeslán!</div>
+
+    <footer>© 2025 Gastro Časopis Jihlava · Projekt VŠPJ</footer>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", () => {
+        const form = document.getElementById("contactForm");
+        const toast = document.getElementById("toast");
+
+        form.addEventListener("submit", (e) => {
+          e.preventDefault();
+
+          // показать анимированный toast
+          toast.classList.add("show");
+
+          // скрыть через 4 секунды
+          setTimeout(() => {
+            toast.classList.remove("show");
+          }, 4000);
+
+          form.reset();
+        });
+      });
+    </script>
+  </body>
+</html>

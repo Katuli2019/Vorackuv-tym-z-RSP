@@ -3,7 +3,11 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Gastro Časopis Jihlava – Přihlášení</title>
+    <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="64x64" href="favicon-64x64.png" />
+
+    <title>GaČas Jihlava – Přihlášení</title>
     <style>
       :root {
         --green: #1f4a3b;
@@ -202,8 +206,10 @@
     <div class="ring"></div>
 
     <div class="wrap">
+      <!-- Vizuální panel -->
       <section class="visual">
         <div class="poster">
+          <!-- 🔸 здесь твой основной логотип -->
           <img src="Image časopis.png" alt="Logo časopisu" />
         </div>
         <p class="note">
@@ -211,8 +217,10 @@
         </p>
       </section>
 
+      <!-- Formulář -->
       <section class="card">
         <div class="brand">
+          <!-- 🔸 маленький логотип -->
           <img src="Image časopis.png" alt="Mini logo" />
           <div>
             <h1>Gastro Časopis Jihlava</h1>
@@ -220,28 +228,18 @@
           </div>
         </div>
 
-        <!-- ✔ Исправленная форма -->
+       
+
+          <!-- ✅ Форма теперь отправляет данные на login.php -->
         <form action="login.php" method="POST">
           <label for="email">E-mail</label>
           <div class="inp">
-            <input
-              type="email"
-              name="email"
-              id="email"
-              placeholder="autor@priklad.cz"
-              required
-            />
+            <input type="email" name="email" placeholder="autor@priklad.cz" required />
           </div>
 
           <label for="password">Heslo</label>
           <div class="inp">
-            <input
-              type="password"
-              name="password"
-              id="password"
-              placeholder="••••••••"
-              required
-            />
+            <input type="password" name="password" placeholder="••••••••" required />
           </div>
 
           <button type="submit" class="btn">Přihlásit se</button>
@@ -250,7 +248,5 @@
             Nemáte účet? <a href="registrace.html">Registrace</a>
           </p>
         </form>
-      </section>
-    </div>
   </body>
 </html>

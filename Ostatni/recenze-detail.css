@@ -1,0 +1,177 @@
+/* 🎀 Globální proměnné – měkké pastelové barvy */
+:root {
+  --green-dark: #17372d;
+  --green: #2e5e4e;
+  --beige: #d4a574;
+  --beige-light: #f2e5d5;
+  --bg: #f9f7f3;
+  --white: #fff;
+  --radius: 14px;
+  --shadow: 0 4px 14px rgba(0, 0, 0, 0.08);
+  --transition: 0.25s ease;
+}
+
+/* Reset */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: "Poppins", sans-serif;
+}
+
+/* Layout */
+body {
+  display: flex;
+  background: var(--bg);
+  min-height: 100vh;
+  color: var(--green-dark);
+}
+
+/* 🎀 Sidebar */
+aside {
+  width: 250px;
+  background: #f3f1ed;
+  padding: 2rem 1.3rem;
+  border-right: 1px solid rgba(0, 0, 0, 0.05);
+  box-shadow: inset -4px 0 10px rgba(0, 0, 0, 0.04);
+}
+
+aside h2 {
+  font-family: "Playfair Display", serif;
+  font-size: 1.5rem;
+  margin-bottom: 2rem;
+  text-align: center;
+  color: var(--green);
+}
+
+nav a {
+  display: block;
+  padding: 0.75rem 1rem;
+  margin-bottom: 0.5rem;
+  border-radius: 10px;
+  text-decoration: none;
+  color: var(--green-dark);
+  background: var(--white);
+  transition: var(--transition);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+}
+
+nav a:hover,
+nav a.active {
+  background: var(--green);
+  color: var(--white);
+  transform: translateX(4px);
+}
+
+/* 🎀 Main content */
+main {
+  flex: 1;
+  padding: 2.4rem;
+}
+
+/* 🎀 Card */
+.card {
+  background: var(--white);
+  padding: 1.8rem;
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  margin-bottom: 1.5rem;
+  border: 1px solid rgba(0, 0, 0, 0.04);
+  transition: var(--transition);
+}
+
+.card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+}
+
+.card h2,
+.card h3 {
+  font-family: "Playfair Display", serif;
+  color: var(--green);
+  margin-bottom: 1rem;
+}
+
+/* 🎀 Buttons */
+.upload-btn {
+  background: var(--beige);
+  color: var(--white);
+  padding: 0.75rem 1.3rem;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: var(--transition);
+}
+
+.upload-btn:hover {
+  background: var(--green);
+}
+
+/* 🎀 Rating Grid */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 1rem;
+  margin-top: 0.8rem;
+}
+
+.grid div label {
+  font-weight: 600;
+  margin-bottom: 0.4rem;
+  display: block;
+}
+
+.grid div select {
+  width: 100%;
+  padding: 0.6rem;
+  border-radius: 10px;
+  border: 1px solid #ccc;
+  background: var(--beige-light);
+  transition: var(--transition);
+}
+
+.grid div select:hover {
+  border-color: var(--beige);
+}
+
+/* 🎀 Textarea */
+textarea {
+  width: 100%;
+  padding: 0.8rem;
+  border-radius: 10px;
+  border: 1px solid #ccc;
+  background: var(--beige-light);
+  transition: var(--transition);
+}
+
+textarea:focus {
+  outline: none;
+  border-color: var(--green);
+  background: #fffefb;
+}
+
+/* 🎀 Select */
+select#result {
+  width: 100%;
+  padding: 0.8rem;
+  border-radius: 10px;
+  background: var(--beige-light);
+  border: 1px solid #ccc;
+}
+
+/* HR line */
+hr {
+  margin: 1rem 0;
+  border: none;
+  border-bottom: 1px solid #ddd;
+}
+
+/* 🎀 Image preview */
+.article-image {
+  max-width: 220px;
+  border-radius: 12px;
+  border: 1px solid #ddd;
+  margin-top: 1rem;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.07);
+}
